@@ -1,0 +1,118 @@
+<div class="page-width">
+  <div class="section-header">
+    <div class="top_head">
+      <div class="left_side">
+        {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+      </div>
+      <div class="right_side">
+        {% if section.settings.sub_par != blank %}
+            {{ section.settings.sub_par }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <hr class="wp-block-separator">
+  
+  <div class="main_list_sec">
+      <div class="listing">
+        <div class="left_list">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+          		{%- when 'Left-list' -%}
+                    <div class="list">
+                        <img src="{{ block.settings.icon_image | img_url : 'master' }}" class="icon_img">
+                        <div class="info_list">
+                        	<h2>{{ block.settings.heading}}</h2>
+                        	<p>{{ block.settings.sub_info}}</p>
+                        </div>
+                    </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+        <div class="right_list">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+          	    {%- when 'Right-list' -%}
+                    <div class="list">
+                        <img src="{{ block.settings.image_icon | img_url : 'master' }}" class="icon_img">
+                        <div class="info_list">
+                        	<h2>{{ block.settings.right_heading}}</h2>
+                        	<p>{{ block.settings.right_sub_info}}</p>
+                        </div>
+                    </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Why choose",
+    "class": "index-section",
+    "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "sub_par",
+          "label": "Sub paragraph"
+        }
+	],
+    "blocks": [
+        {
+          "type": "Left-list",
+          "name": "Left list",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "icon_image",
+              "label": "Icon Image"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "Heading Text"
+            },
+            {
+              "type": "richtext",
+              "id": "sub_info",
+              "label": "Info Text"
+            }
+          ]
+        },
+        {
+          "type": "Right-list",
+          "name": "Right list",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "image_icon",
+              "label": "Icon Image"
+            },
+            {
+              "type": "text",
+              "id": "right_heading",
+              "label": "Heading Text"
+            },
+            {
+              "type": "richtext",
+              "id": "right_sub_info",
+              "label": "Info Text"
+            }
+          ]
+        }
+      ],
+      "presets" : [
+          {
+            "name" : "Why choose"
+          }
+      ]
+
+  }
+{% endschema %}
